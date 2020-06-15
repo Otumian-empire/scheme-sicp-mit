@@ -1,6 +1,6 @@
 #| factorial program
     give, n as a positive integer, 
-    n! = n * (n -1) * (n - 2) * ... * 3 * 2 * 1
+    n! = n * (n - 1) * (n - 2) * ... * 3 * 2 * 1
     n! = n * (n - 1)!  |#
 (define (factorial x)
     (if (< x 1) 1 
