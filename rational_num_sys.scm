@@ -6,9 +6,11 @@ this system must be able to add, subtract, multipy, divide and check the equalit
 (define  (numrat r)
     (car r))
 
+
 ; return the denominator of a given rational number 
 (define  (denumrat r)
     (cdr r))
+
 
 ; return a rational number of 2 given numbers as the numerator and 
 ; the denominator
@@ -16,22 +18,26 @@ this system must be able to add, subtract, multipy, divide and check the equalit
     (define g (gcd n d))
     (cons (/ n g) (/ d g)))
 
+
 ; patterned procedure
 (define (pattern-proc proc x y)
     (let ((n (proc 
                 ( * (numrat x) (denumrat y))
                 (* (denumrat x) (numrat y))))
-            (d (* (denumrat x) (denumrat ))))
+            (d (* (denumrat x) (denumrat y))))
 
         (makerat n d)))
+
 
 ; add rational numbers
 (define (addrat x y)
     (pattern-proc + x y))
 
+
 ; subtracts rational numbers
 (define (subrat x y)
     (pattern-proc - x y))
+
 
 ; multiplies rational numbers
 (define (mulrat x y)
@@ -47,20 +53,34 @@ this system must be able to add, subtract, multipy, divide and check the equalit
             (* (denumrat x)
                 (numrat y))))
 
+
 ; check for equality of rational numbers
 (define (eqrat x y)
     (= (* (numrat x) (denumrat y))
         (* (denumrat x) (numrat y))))
 
+
 ; prints a given rational number
 (define (printrat r)
-    (newline)
     (display (numrat r))
     (display "/")
     (display (denumrat r))
-    nil)  ; let it return nil
+    (newline))
+
+
+(define (test)
+    (define half (makerat 1 2))
+    (define third (makerat 1 3))
+
+    (printrat half)
+    (printrat third)
+
+    (printrat (addrat half third))
+    (printrat (subrat half third))
+    (printrat (mulrat half third))
+    (printrat (divrat half third))
+
+    (display  (eqrat  half third)))
 
 
 ; (load "rational_num_sys.scm")
-(define half (makerat 1 2))
-(define third (makerat 1 3))
